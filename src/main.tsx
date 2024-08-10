@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
-import { Button } from "./components/ui/button";
+import Layout from "./layouts/Layout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Button>Hello world!</Button>,
+    element: <Layout>Hello world!</Layout>,
   },
   {
     path: "/user-profile",
