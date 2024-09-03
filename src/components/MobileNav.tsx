@@ -1,4 +1,6 @@
-import { Menu } from "lucide-react";
+import { LogIn, Menu } from "lucide-react";
+import { useAuth0 } from "@auth0/auth0-react";
+
 import {
   Sheet,
   SheetContent,
@@ -8,10 +10,10 @@ import {
 } from "./ui/sheet";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { useAuth0 } from "@auth0/auth0-react";
+import MobileUserMenu from "./MobileUserMenu";
 
 const MobileNav = () => {
-  const { loginWithRedirect } = useAuth0();
+  const { loginWithRedirect, isAuthenticated, user } = useAuth0();
 
   return (
     <Sheet>
@@ -19,16 +21,27 @@ const MobileNav = () => {
         <Menu className="text-blue-500" />
       </SheetTrigger>
 
-      <SheetContent>
-        <SheetTitle>Welcome to Foodie.com!</SheetTitle>
+      <SheetContent className="w-72">
+        <SheetTitle>
+          {isAuthenticated ? (
+            <span>Hi {user?.nickname}!</span>
+          ) : (
+            <span>Welcome to Foodie.com!</span>
+          )}
+        </SheetTitle>
         <Separator className="my-4" />
         <SheetDescription className="flex">
-          <Button
-            className="flex-1 font-bold  bg-blue-500"
-            onClick={() => loginWithRedirect()}
-          >
-            Log In
-          </Button>
+          {isAuthenticated ? (
+            <MobileUserMenu />
+          ) : (
+            <Button
+              className="flex-1 font-bold  bg-blue-500 text-md"
+              onClick={() => loginWithRedirect()}
+            >
+              <LogIn className="mr-2 h-6 w-5" />
+              <span className="pb-1">Log In</span>
+            </Button>
+          )}
         </SheetDescription>
       </SheetContent>
     </Sheet>
