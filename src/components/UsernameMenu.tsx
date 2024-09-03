@@ -1,16 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
+import { LogOut, User, UtensilsCrossed } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Link } from "react-router-dom";
-import { LogOut, User, UtensilsCrossed } from "lucide-react";
-import { DropdownMenuItemIndicator } from "node_modules/@radix-ui/react-dropdown-menu/dist";
 
 const UsernameMenu = () => {
   const { logout, user } = useAuth0();
