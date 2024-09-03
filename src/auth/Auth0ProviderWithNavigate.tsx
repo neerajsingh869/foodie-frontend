@@ -15,6 +15,9 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   const onRedirectCallback = (appState?: AppState, user?: User) => {
     console.log("APP-STATE", appState);
     console.log("USER", user);
+    console.log(document.title);
+    console.log(window.location.pathname);
+    window.history.replaceState({}, document.title, window.location.pathname);
   };
 
   return (
