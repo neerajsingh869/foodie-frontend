@@ -42,9 +42,6 @@ const UsernameMenu = () => {
           >
             <LogOut className="mr-2 h-6 w-5" />
             <span>Log out</span>
-            {/* <Button className="bg-black text-white text-lg hover:bg-black" >
-              Log Out
-            </Button> */}
           </DropdownMenuItem>
         </DropdownMenuGroup>
       </DropdownMenuContent>
