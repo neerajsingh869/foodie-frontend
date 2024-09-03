@@ -1,26 +1,28 @@
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { Button } from "./ui/button";
-import UsernameMenu from "./UsernameMenu";
+import DesktopUserMenu from "./DesktopUserMenu";
+import { LogIn } from "lucide-react";
 
-const MainNav = () => {
+const DesktopNav = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
 
   return (
     <>
       {isAuthenticated ? (
-        <UsernameMenu />
+        <DesktopUserMenu />
       ) : (
         <Button
           variant="ghost"
           className="hover:bg-white hover:text-blue-500 text-md font-bold"
           onClick={() => loginWithRedirect()}
         >
-          Log In
+          <LogIn className="mr-2 h-6 w-5" />
+          <span className="pb-1">Log In</span>
         </Button>
       )}
     </>
   );
 };
 
-export default MainNav;
+export default DesktopNav;

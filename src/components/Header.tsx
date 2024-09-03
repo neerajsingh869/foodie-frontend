@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
-import MainNav from "./MainNav";
+import DesktopNav from "./DesktopNav";
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
           <MobileNav />
         </div>
         <div className="md:flex md:justify-between md:items-center hidden">
-          <MainNav />
+          <DesktopNav />
         </div>
       </div>
     </header>

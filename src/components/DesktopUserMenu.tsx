@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 
-const UsernameMenu = () => {
+const DesktopUserMenu = () => {
   const { logout, user } = useAuth0();
 
   return (
@@ -49,4 +49,4 @@ const UsernameMenu = () => {
   );
 };
 
-export default UsernameMenu;
+export default DesktopUserMenu;
