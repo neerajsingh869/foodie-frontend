@@ -30,7 +30,7 @@ const MobileNav = () => {
           )}
         </SheetTitle>
         <Separator className="my-4" />
-        <SheetDescription className="flex">
+        <div className="flex" id="radix-:r5:">
           {isAuthenticated ? (
             <MobileUserMenu />
           ) : (
@@ -42,7 +42,7 @@ const MobileNav = () => {
               <span className="pb-1">Log In</span>
             </Button>
           )}
-        </SheetDescription>
+        </div>
       </SheetContent>
     </Sheet>
   );

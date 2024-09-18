@@ -13,13 +13,15 @@ import {
 const DesktopUserMenu = () => {
   const { logout, user } = useAuth0();
 
+  console.log(user);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <img
           src={user?.picture}
           alt={`${user?.name} Image`}
-          className="object-contain h-12 rounded-[100%]"
+          className="object-contain h-12 rounded-[100%] cursor-pointer"
         />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-44 p-2 border-2">
