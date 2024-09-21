@@ -15,7 +15,6 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   if (!domain || !clientId || !redirectUri) {
     throw new Error("Unable to initialize auth");
   }
-    
 
   const onRedirectCallback = (appState?: AppState, user?: User) => {
     console.log("APP-STATE", appState);
