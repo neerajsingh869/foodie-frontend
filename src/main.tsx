@@ -9,6 +9,8 @@ import {
 import Layout from "./layouts/Layout";
 import Home from "./pages/Home";
 import Auth0ProviderWithNavigate from "./auth/Auth0ProviderWithNavigate";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const router = createBrowserRouter([
   {
@@ -25,10 +27,21 @@ const router = createBrowserRouter([
   },
 ]);
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false
+    }
+  }
+});
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Auth0ProviderWithNavigate>
-      <RouterProvider router={router} />
-    </Auth0ProviderWithNavigate>
+    <QueryClientProvider client={queryClient}>
+      <Auth0ProviderWithNavigate>
+        <RouterProvider router={router} />
+      </Auth0ProviderWithNavigate>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   </React.StrictMode>
 );
