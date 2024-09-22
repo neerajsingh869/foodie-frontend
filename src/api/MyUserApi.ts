@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
@@ -8,22 +9,31 @@ type CreateUserRequest = {
 };
 
 export const useCreateMyUser = () => {
+  const {getAccessTokenSilently} = useAuth0();
+
   // function to make request to backend to create my user
   const createMyUserRequest = async (user: CreateUserRequest) => {
-    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+    try {
+      const accessToken = await getAccessTokenSilently();
 
-    console.log(response);
+      const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+        method: "POST",
+        headers: {
+          Authorization: accessToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
 
-    /* throw an error in case there is difficulty
-    in creating user on backend side */
-    if (!response.ok) {
-      throw new Error("Failed to create user");
+      console.log(response);
+
+      /* throw an error in case there is difficulty
+      in creating user on backend side */
+      if (!response.ok) {
+        throw new Error("Failed to create user");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -1,12 +1,9 @@
-import { useCreateMyUser } from "@/api/MyUserApi";
+import { Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AppState, Auth0Provider, User } from "@auth0/auth0-react";
 
-type Props = {
-  children: React.ReactNode;
-};
-
-const Auth0ProviderWithNavigate = ({ children }: Props) => {
-  const { createUser } = useCreateMyUser();
+const Auth0ProviderLayout = () => {
+  const navigate = useNavigate();
 
   const domain: string = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId: string = import.meta.env.VITE_AUTH0_CLIENT_ID;
@@ -17,15 +14,9 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
   }
 
   const onRedirectCallback = (appState?: AppState, user?: User) => {
-    console.log("APP-STATE", appState);
-    console.log("USER", user);
-    console.log(document.title);
-    console.log(window.location.pathname);
-    window.history.replaceState({}, document.title, window.location.pathname);
-
-    if (user?.sub && user?.email) {
-      createUser({ auth0Id: user.sub, email: user.email });
-    }
+    console.log(user);
+    console.log(appState);
+    navigate("/auth-callback");
   };
 
   return (
@@ -37,9 +28,9 @@ const Auth0ProviderWithNavigate = ({ children }: Props) => {
       }}
       onRedirectCallback={onRedirectCallback}
     >
-      {children}
+      <Outlet />
     </Auth0Provider>
   );
 };
 
-export default Auth0ProviderWithNavigate;
+export default Auth0ProviderLayout;
