@@ -9,7 +9,7 @@ type CreateUserRequest = {
 };
 
 export const useCreateMyUser = () => {
-  const {getAccessTokenSilently} = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();
 
   // function to make request to backend to create my user
   const createMyUserRequest = async (user: CreateUserRequest) => {
@@ -19,7 +19,7 @@ export const useCreateMyUser = () => {
       const response = await fetch(`${API_BASE_URL}/api/my/user`, {
         method: "POST",
         headers: {
-          Authorization: accessToken,
+          Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify(user),

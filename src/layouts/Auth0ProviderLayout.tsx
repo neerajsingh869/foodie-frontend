@@ -8,8 +8,9 @@ const Auth0ProviderLayout = () => {
   const domain: string = import.meta.env.VITE_AUTH0_DOMAIN;
   const clientId: string = import.meta.env.VITE_AUTH0_CLIENT_ID;
   const redirectUri: string = import.meta.env.VITE_AUTH0_CALLBACK_URL;
+  const audience: string = import.meta.env.VITE_AUTH0_AUDIENCE;
 
-  if (!domain || !clientId || !redirectUri) {
+  if (!domain || !clientId || !redirectUri || !audience) {
     throw new Error("Unable to initialize auth");
   }
 
@@ -25,6 +26,7 @@ const Auth0ProviderLayout = () => {
       clientId={clientId}
       authorizationParams={{
         redirect_uri: redirectUri,
+        audience,
       }}
       onRedirectCallback={onRedirectCallback}
     >
