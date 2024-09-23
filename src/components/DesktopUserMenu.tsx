@@ -26,21 +26,21 @@ const DesktopUserMenu = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-44 p-2 border-2">
         <DropdownMenuGroup className="font-bold flex flex-col gap-1">
-          <DropdownMenuItem className="text-md  hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
-            <Link to="/restaurant" className="flex items-center">
+          <DropdownMenuItem className="text-md p-0 hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
+            <Link to="/restaurant" className="flex p-2 items-center w-full">
               <UtensilsCrossed className="mr-2 h-6 w-5" />
               <span>My Restaurant</span>
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem className="text-md  hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
-            <Link to="/user-profile" className="flex items-center">
+          <DropdownMenuItem className="text-md p-0 hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
+            <Link to="/user-profile" className="flex p-2 items-center w-full">
               <User className="mr-2 h-6 w-5" />
               <span>Profile</span>
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => logout()}
-            className="text-md flex items-center text-md  hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white"
+            className="text-md flex items-center text-md hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white"
           >
             <LogOut className="mr-2 h-6 w-5" />
             <span>Log out</span>

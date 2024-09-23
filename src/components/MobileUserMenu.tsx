@@ -7,14 +7,14 @@ const MobileUserMenu = () => {
 
   return (
     <div className="flex flex-col gap-2 w-full text-black text-lg">
-      <div className="cursor-pointer p-2 flex-1 text-white hover:bg-black flex justify-center bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
-        <Link to="/restaurant" className="flex items-center">
+      <div className="cursor-pointer flex-1 text-white hover:bg-black flex justify-center bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
+        <Link to="/restaurant" className="flex p-2 items-center justify-center w-full">
           <UtensilsCrossed className="mr-2 h-6 w-5" />
           <span>My Restaurant</span>
         </Link>
       </div>
-      <div className="cursor-pointer p-2 flex-1 text-white hover:bg-black flex justify-center bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
-        <Link to="/user-profile" className="flex items-center">
+      <div className="cursor-pointer flex-1 text-white hover:bg-black flex justify-center bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
+        <Link to="/user-profile" className="flex p-2 items-center justify-center w-full">
           <User className="mr-2 h-6 w-5" />
           <span>Profile</span>
         </Link>
