@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import Layout from "./layouts/Layout";
 import Auth0ProviderLayout from "./layouts/Auth0ProviderLayout";
+import UserProfilePage from "./layouts/UserProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Layout><Home/></Layout>,
+        element: <Layout showHero><Home/></Layout>,
       },
       {
         path: "auth-callback",
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: "user-profile",
-        element: <div>User Profile Page!</div>,
+        element: <Layout><UserProfilePage /></Layout>,
       },
       {
         path: "*",
