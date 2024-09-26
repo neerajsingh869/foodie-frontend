@@ -14,6 +14,7 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import Layout from "./layouts/Layout";
 import Auth0ProviderLayout from "./layouts/Auth0ProviderLayout";
 import UserProfilePage from "./layouts/UserProfilePage";
+import { Toaster } from "./components/ui/sonner";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Layout showHero><Home/></Layout>,
+        element: (
+          <Layout showHero>
+            <Home />
+          </Layout>
+        ),
       },
       {
         path: "auth-callback",
@@ -30,28 +35,33 @@ const router = createBrowserRouter([
       },
       {
         path: "user-profile",
-        element: <Layout><UserProfilePage /></Layout>,
+        element: (
+          <Layout>
+            <UserProfilePage />
+          </Layout>
+        ),
       },
       {
         path: "*",
         element: <Navigate to="/" />,
       },
-    ]
-  }
+    ],
+  },
 ]);
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false
-    }
-  }
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
+      <Toaster theme="light" visibleToasts={1} position="top-right" richColors />
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>

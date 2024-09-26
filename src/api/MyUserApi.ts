@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -13,27 +14,23 @@ export const useCreateMyUser = () => {
 
   // function to make request to backend to create my user
   const createMyUserRequest = async (user: CreateUserRequest) => {
-    try {
-      const accessToken = await getAccessTokenSilently();
+    const accessToken = await getAccessTokenSilently();
 
-      const response = await fetch(`${API_BASE_URL}/api/my/user`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+    const response = await fetch(`${API_BASE_URL}/api/my/user`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
 
-      console.log(response);
+    console.log(response);
 
-      /* throw an error in case there is difficulty
-      in creating user on backend side */
-      if (!response.ok) {
-        throw new Error("Failed to create user");
-      }
-    } catch (error) {
-      console.log(error);
+    /* throw an error in case there is difficulty
+    in creating user on backend side */
+    if (!response.ok) {
+      throw new Error("Failed to create user");
     }
   };
 
@@ -85,6 +82,12 @@ export const useUpdateMyUser = () => {
 
   const { mutateAsync: updateUser, isPending } = useMutation({
     mutationFn: updateMyUserRequest,
+    onSuccess: () => {
+      toast.success("Profile updated successfully!")
+    },
+    onError: (error) => {
+      toast.error(error.toString());
+    }
   });
 
   return { updateUser, isPending };
