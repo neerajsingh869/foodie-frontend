@@ -16,10 +16,10 @@ import LoadingButton from "@/components/LoadingButton";
 
 const formSchema = z.object({
   email: z.string().optional(),
-  name: z.string().min(5, { message: "Name is required" }),
-  addressLine1: z.string().min(5, { message: "Address Line 1 is required" }),
-  city: z.string().min(5, { message: "City is required" }),
-  country: z.string().min(5, { message: "Country is required" }),
+  name: z.string().min(1, { message: "Name is required" }),
+  addressLine1: z.string().min(1, { message: "Address Line 1 is required" }),
+  city: z.string().min(1, { message: "City is required" }),
+  country: z.string().min(1, { message: "Country is required" }),
 });
 
 type UserFormData = z.infer<typeof formSchema>;
@@ -32,6 +32,12 @@ type Props = {
 const UserProfileForm = ({ onSave, isLoading }: Props) => {
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      addressLine1: "",
+      city: "",
+      country: "",
+    }
   });
 
   return (
