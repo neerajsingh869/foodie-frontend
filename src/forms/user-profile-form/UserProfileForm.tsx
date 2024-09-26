@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -13,6 +14,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import LoadingButton from "@/components/LoadingButton";
+import { User } from "@/types";
 
 const formSchema = z.object({
   email: z.string().optional(),
@@ -25,20 +27,20 @@ const formSchema = z.object({
 type UserFormData = z.infer<typeof formSchema>;
 
 type Props = {
+  currentUser: User;
   onSave: (userProfileData: UserFormData) => void;
   isLoading: boolean;
 };
 
-const UserProfileForm = ({ onSave, isLoading }: Props) => {
+const UserProfileForm = ({ currentUser, onSave, isLoading }: Props) => {
   const form = useForm<UserFormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      addressLine1: "",
-      city: "",
-      country: "",
-    }
+    defaultValues: currentUser,
   });
+
+  useEffect(() => {
+    form.reset(currentUser);
+  }, [currentUser, form]);
 
   return (
     <Form {...form}>
@@ -119,7 +121,13 @@ const UserProfileForm = ({ onSave, isLoading }: Props) => {
             )}
           />
         </div>
-        {isLoading ? <LoadingButton /> : <Button type="submit" className="bg-blue-500 text-md">Submit</Button>}
+        {isLoading ? (
+          <LoadingButton />
+        ) : (
+          <Button type="submit" className="bg-blue-500 text-md">
+            Submit
+          </Button>
+        )}
       </form>
     </Form>
   );
