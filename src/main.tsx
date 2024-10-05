@@ -15,6 +15,7 @@ import Layout from "./layouts/Layout";
 import Auth0ProviderLayout from "./layouts/Auth0ProviderLayout";
 import UserProfilePage from "./layouts/UserProfilePage";
 import { Toaster } from "./components/ui/sonner";
+import ProtectedRoute from "./auth/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -34,12 +35,17 @@ const router = createBrowserRouter([
         element: <AuthCallbackPage />,
       },
       {
-        path: "user-profile",
-        element: (
-          <Layout>
-            <UserProfilePage />
-          </Layout>
-        ),
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "user-profile",
+            element: (
+              <Layout>
+                <UserProfilePage />
+              </Layout>
+            ),
+          },
+        ],
       },
       {
         path: "*",
@@ -61,7 +67,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <Toaster theme="light" visibleToasts={1} position="top-right" richColors />
+      <Toaster
+        theme="light"
+        visibleToasts={1}
+        position="top-right"
+        richColors
+      />
       <ReactQueryDevtools />
     </QueryClientProvider>
   </React.StrictMode>
