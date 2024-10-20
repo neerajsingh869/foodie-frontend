@@ -13,9 +13,10 @@ import Home from "./pages/Home";
 import AuthCallbackPage from "./pages/AuthCallbackPage";
 import Layout from "./layouts/Layout";
 import Auth0ProviderLayout from "./layouts/Auth0ProviderLayout";
-import UserProfilePage from "./layouts/UserProfilePage";
+import UserProfilePage from "./pages/UserProfilePage";
 import { Toaster } from "./components/ui/sonner";
 import ProtectedRoute from "./auth/ProtectedRoute";
+import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,19 @@ const router = createBrowserRouter([
             element: (
               <Layout>
                 <UserProfilePage />
+              </Layout>
+            ),
+          },
+        ],
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "manage-restaurant",
+            element: (
+              <Layout>
+                <ManageRestaurantPage />
               </Layout>
             ),
           },

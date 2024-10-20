@@ -27,7 +27,7 @@ const DesktopUserMenu = () => {
       <DropdownMenuContent className="w-44 p-2 border-2">
         <DropdownMenuGroup className="font-bold flex flex-col gap-1">
           <DropdownMenuItem className="text-md p-0 hover:bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
-            <Link to="/restaurant" className="flex p-2 items-center w-full">
+            <Link to="/manage-restaurant" className="flex p-2 items-center w-full">
               <UtensilsCrossed className="mr-2 h-6 w-5" />
               <span>My Restaurant</span>
             </Link>
