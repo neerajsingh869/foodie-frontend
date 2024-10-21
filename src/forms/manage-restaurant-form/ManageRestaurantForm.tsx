@@ -20,42 +20,60 @@ const formSchema = z.object({
     })
     // in other cases, when the value is not undefined
     .min(1, "Restuarant name is required"),
-  city: z.string({
-    required_error: "City is required",
-  }).min(1, "City is required"),
-  country: z.string({
-    required_error: "Country is required",
-  }).min(1, "Country is required"),
-  deliveryPrice: z.string({
-    required_error: "Delivery price is required",
-  }).min(1, "Delivery price is required").pipe(z.coerce.number({
-    invalid_type_error: "must be a number",
-  })),
-  estimatedDeliveryTime: z.string({
-    required_error: "Estimated delivery time is required",
-  }).min(1, "Estimated delivery time is required").pipe(z.coerce.number({
-    invalid_type_error: "must be a number",
-  })),
+  city: z
+    .string({
+      required_error: "City is required",
+    })
+    .min(1, "City is required"),
+  country: z
+    .string({
+      required_error: "Country is required",
+    })
+    .min(1, "Country is required"),
+  deliveryPrice: z
+    .string({
+      required_error: "Delivery price is required",
+    })
+    .min(1, "Delivery price is required")
+    .pipe(
+      z.coerce.number({
+        invalid_type_error: "must be a number",
+      })
+    ),
+  estimatedDeliveryTime: z
+    .string({
+      required_error: "Estimated delivery time is required",
+    })
+    .min(1, "Estimated delivery time is required")
+    .pipe(
+      z.coerce.number({
+        invalid_type_error: "must be a number",
+      })
+    ),
   cuisines: z.array(
-    z.string({
-      required_error: "Please select at least one item",
-    }).min(1, { message: "Please select at least one item" })
+    z
+      .string({
+        required_error: "Please select at least one item",
+      })
+      .min(1, { message: "Please select at least one item" })
   ),
   menuItems: z.array(
     z.object({
-      name: z.string({
-        required_error: "Name of menu item is required",
-      }).min(1, "Name of menu item is required"),
+      name: z
+        .string({
+          required_error: "Name of menu item is required",
+        })
+        .min(1, "Name of menu item is required"),
       price: z.coerce.number().min(1, "Price of menu item is required"),
     })
   ),
   imageFile: z
-  .instanceof(FileList, { message: "Image is required" })
-  .transform(FileList => FileList[0])
-  .refine(file => {
-    console.log(file);
-    return file?.type.startsWith("image/")
-  }, "File must be an image"),
+    .instanceof(FileList, { message: "Image is required" })
+    .transform((FileList) => FileList[0])
+    .refine((file) => {
+      console.log(file);
+      return file?.type.startsWith("image/");
+    }, "File must be an image"),
 });
 
 type RestaurantFormData = z.infer<typeof formSchema>;

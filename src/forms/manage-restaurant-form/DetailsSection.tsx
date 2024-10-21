@@ -1,18 +1,22 @@
 import { useFormContext } from "react-hook-form";
 
 import { Input } from "@/components/ui/input";
-import { FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 const DetailsSection = () => {
-  const {control} = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <div className="space-y-2">
       <div>
         <h2 className="font-bold text-2xl">Details</h2>
-        <p className="text-sm">
-          Enter the details about your restaurant
-        </p>
+        <p className="text-sm">Enter the details about your restaurant</p>
       </div>
       <FormField
         control={control}
@@ -82,7 +86,7 @@ const DetailsSection = () => {
         )}
       />
     </div>
-  )
-}
+  );
+};
 
 export default DetailsSection;

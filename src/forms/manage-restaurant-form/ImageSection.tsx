@@ -29,10 +29,7 @@ const ImageSection = () => {
           <FormItem className="w-[100%] md:w-80">
             <FormLabel>Name</FormLabel>
             <FormControl>
-              <Input 
-                type="file" 
-                className="bg-white"
-                {...fileRef} />
+              <Input type="file" className="bg-white" {...fileRef} />
             </FormControl>
             <FormMessage />
           </FormItem>

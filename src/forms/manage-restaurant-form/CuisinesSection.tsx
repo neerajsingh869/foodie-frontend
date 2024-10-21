@@ -5,7 +5,7 @@ import { cuisineList } from "@/config/restaurant-options-config";
 import CousineCheckbox from "./CuisineCheckbox";
 
 const CousineSection = () => {
-  const {control} = useFormContext();
+  const { control } = useFormContext();
 
   return (
     <div className="space-y-2">
@@ -18,7 +18,7 @@ const CousineSection = () => {
       <FormField
         control={control}
         name="cuisines"
-        render={({field}) => (
+        render={({ field }) => (
           <FormItem>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-1">
               {cuisineList.map((cuisine, index) => (
@@ -27,10 +27,10 @@ const CousineSection = () => {
             </div>
             <FormMessage />
           </FormItem>
-        )} 
+        )}
       />
     </div>
-  )
-}
+  );
+};
 
 export default CousineSection;

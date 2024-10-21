@@ -6,9 +6,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 type Props = {
   cuisine: string;
   field: ControllerRenderProps<FieldValues, "cuisines">;
-}
+};
 
-const CousineCheckbox = ({cuisine, field}: Props) => {
+const CousineCheckbox = ({ cuisine, field }: Props) => {
   return (
     <FormItem className="flex flex-row-reverse items-center gap-2 space-y-0 mt-2 justify-end">
       <FormLabel>{cuisine}</FormLabel>
@@ -20,13 +20,15 @@ const CousineCheckbox = ({cuisine, field}: Props) => {
             if (checked) {
               field.onChange([...field.value, cuisine]);
             } else {
-              field.onChange(field.value.filter((value: string) => value !== cuisine));
+              field.onChange(
+                field.value.filter((value: string) => value !== cuisine)
+              );
             }
-          }}   
+          }}
         />
       </FormControl>
     </FormItem>
-  )
-}
+  );
+};
 
 export default CousineCheckbox;
