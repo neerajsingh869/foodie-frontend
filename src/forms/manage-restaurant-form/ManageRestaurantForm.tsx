@@ -50,13 +50,7 @@ const formSchema = z.object({
         invalid_type_error: "must be a number",
       })
     ),
-  cuisines: z.array(
-    z
-      .string({
-        required_error: "Please select at least one item",
-      })
-      .min(1, { message: "Please select at least one item" })
-  ),
+  cuisines: z.array(z.string()).min(1, "Please select at least one item"),
   menuItems: z.array(
     z.object({
       name: z
