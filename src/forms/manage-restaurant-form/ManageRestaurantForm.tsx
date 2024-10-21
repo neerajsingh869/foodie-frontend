@@ -83,7 +83,7 @@ const ManageRestaurantForm = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-gray-100 rounded-lg p-5 md:p-10"
+        className="space-y-8 bg-gray-100 rounded-lg p-4 sm:p-7 md:p-10"
       >
         {/* Details form */}
         <DetailsSection />
