@@ -62,12 +62,8 @@ const formSchema = z.object({
     })
   ),
   imageFile: z
-    .instanceof(FileList, { message: "Image is required" })
-    .transform((FileList) => FileList[0])
-    .refine((file) => {
-      console.log(file);
-      return file?.type.startsWith("image/");
-    }, "File must be an image"),
+    .instanceof(File, { message: "Image is required" })
+    .refine((file) => file?.type.startsWith("image/"), "File must be an image"),
 });
 
 type RestaurantFormData = z.infer<typeof formSchema>;

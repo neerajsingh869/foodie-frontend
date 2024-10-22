@@ -1,20 +1,18 @@
+import { useFormContext } from "react-hook-form";
+
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useFormContext } from "react-hook-form";
 
 const ImageSection = () => {
-  const { control, register } = useFormContext();
-
-  const fileRef = register("file");
+  const { control } = useFormContext();
 
   return (
-    <>
+    <div className="space-y-2">
       <div>
         <h2 className="font-bold text-2xl">Image</h2>
         <p className="text-sm">
@@ -25,17 +23,28 @@ const ImageSection = () => {
       <FormField
         control={control}
         name="imageFile"
-        render={() => (
+        render={({field}) => (
           <FormItem className="w-[100%] md:w-80">
-            <FormLabel>Name</FormLabel>
             <FormControl>
-              <Input type="file" className="bg-white" {...fileRef} />
+              <Input
+                type="file"
+                className="bg-white"
+                accept=".jpg, .jpeg, .png"
+                onChange={
+                  event => {
+                    console.log(event.target.files);
+                    return field.onChange(
+                      event.target.files ? event.target.files[0] : null
+                    )
+                  }
+                }
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
         )}
       />
-    </>
+    </div>
   );
 };
 
