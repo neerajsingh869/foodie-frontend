@@ -9,6 +9,7 @@ import DetailsSection from "./DetailsSection";
 import CousineSection from "./CuisinesSection";
 import MenuSection from "./MenuSection";
 import ImageSection from "./ImageSection";
+import LoadingButton from "@/components/LoadingButton";
 
 const formSchema = z.object({
   restaurantName: z
@@ -68,7 +69,12 @@ const formSchema = z.object({
 
 type RestaurantFormData = z.infer<typeof formSchema>;
 
-const ManageRestaurantForm = () => {
+type Props = {
+  onSave: (restaurnatformData: FormData) => void;
+  isLoading: boolean;
+};
+
+const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
   const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -77,8 +83,27 @@ const ManageRestaurantForm = () => {
     },
   });
 
-  const onSubmit = (values: RestaurantFormData) => {
-    console.log(values);
+  const onSubmit = (formDataValues: RestaurantFormData) => {
+    const formData = new FormData();
+
+    formData.append("restaurantName", formDataValues.restaurantName);
+    formData.append("city", formDataValues.city);
+    formData.append("country", formDataValues.country);
+    formData.append("deliveryPrice", formDataValues.deliveryPrice.toString());
+    formData.append(
+      "estimatedDeliveryTime",
+      formDataValues.estimatedDeliveryTime.toString()
+    );
+    formData.append("imageFile", formDataValues.imageFile);
+    formDataValues.cuisines.forEach((cuisine, index) => {
+      formData.append(`cuisines[${index}]`, cuisine);
+    });
+    formDataValues.menuItems.forEach((menuItem, index) => {
+      formData.append(`menuItems[${index}][name]`, menuItem.name);
+      formData.append(`menuItems[${index}][price]`, menuItem.price.toString());
+    });
+
+    onSave(formData);
   };
 
   return (
@@ -87,22 +112,14 @@ const ManageRestaurantForm = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-8 bg-gray-100 rounded-lg p-4 sm:p-7 md:p-10"
       >
-        {/* Details form */}
         <DetailsSection />
-        {/* Separator */}
         <Separator />
-        {/* Cuisines form */}
         <CousineSection />
-        {/* Separator */}
         <Separator />
-        {/* Menu form */}
         <MenuSection />
-        {/* Separator */}
         <Separator />
-        {/* Image upload form */}
         <ImageSection />
-        {/* Submit button */}
-        <Button type="submit">Submit</Button>
+        {isLoading ? <LoadingButton /> : <Button type="submit">Submit</Button>}
       </form>
     </Form>
   );
