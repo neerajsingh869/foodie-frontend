@@ -28,7 +28,7 @@ export const useGetMyUser = () => {
     console.log(response);
 
     if (!response.ok) {
-      throw new Error("Failed to get user");
+      throw new Error("Failed to get user.");
     }
 
     return response.json();
@@ -44,7 +44,7 @@ export const useGetMyUser = () => {
   });
 
   if (error) {
-    toast.error(error.toString());
+    toast.error(error.message);
   }
 
   return { currentUser, isLoading, error };
@@ -66,29 +66,33 @@ export const useCreateMyUser = () => {
       body: JSON.stringify(user),
     });
 
-    console.log(response);
-
     /* throw an error in case there is difficulty
     in creating user on backend side */
     if (!response.ok) {
-      throw new Error("Failed to create user");
+      throw new Error("Failed to create user.");
     }
   };
 
   const {
     mutateAsync: createUser,
     isPending,
-    isError,
+    error,
     isSuccess,
   } = useMutation({
     mutationFn: createMyUserRequest,
   });
 
+  if (isSuccess) {
+    toast.success("User created successfully.");
+  }
+
+  if (error) {
+    toast.error(error.message);
+  }
+
   return {
     createUser,
     isPending,
-    isError,
-    isSuccess,
   };
 };
 
@@ -115,7 +119,7 @@ export const useUpdateMyUser = () => {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to update user details");
+      throw new Error("Failed to update user details.");
     }
 
     return response.json();
@@ -135,7 +139,7 @@ export const useUpdateMyUser = () => {
   }
 
   if (error) {
-    toast.error(error.toString());
+    toast.error(error.message);
   }
 
   return { updateUser, isPending };
