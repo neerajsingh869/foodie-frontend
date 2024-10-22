@@ -23,20 +23,17 @@ const ImageSection = () => {
       <FormField
         control={control}
         name="imageFile"
-        render={({field}) => (
+        render={({ field }) => (
           <FormItem className="w-[100%] md:w-80">
             <FormControl>
               <Input
                 type="file"
                 className="bg-white"
                 accept=".jpg, .jpeg, .png"
-                onChange={
-                  event => {
-                    console.log(event.target.files);
-                    return field.onChange(
-                      event.target.files ? event.target.files[0] : null
-                    )
-                  }
+                onChange={(event) =>
+                  field.onChange(
+                    event.target.files ? event.target.files[0] : null
+                  )
                 }
               />
             </FormControl>

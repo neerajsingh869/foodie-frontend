@@ -81,12 +81,6 @@ const ManageRestaurantForm = () => {
     console.log(values);
   };
 
-  // Get all form values using getValues
-  const handleGetValues = () => {
-    const allValues = form.getValues();
-    console.log("Current form values:", allValues);
-  };
-
   return (
     <Form {...form}>
       <form
@@ -108,9 +102,7 @@ const ManageRestaurantForm = () => {
         {/* Image upload form */}
         <ImageSection />
         {/* Submit button */}
-        <Button type="submit" onClick={handleGetValues}>
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );

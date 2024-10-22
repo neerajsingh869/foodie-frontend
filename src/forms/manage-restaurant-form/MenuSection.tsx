@@ -11,9 +11,6 @@ const MenuSection = () => {
     name: "menuItems",
   });
 
-  console.log(control);
-  console.log(fields);
-
   return (
     <div className="space-y-2">
       <div>
