@@ -6,7 +6,7 @@ const UserProfilePage = () => {
   const { currentUser, isLoading: isGetLoading } = useGetMyUser();
 
   if (isGetLoading) {
-    return <span>Loading...</span>;
+    return <span>UserProfilePage Loading...</span>;
   }
 
   if (!currentUser) {

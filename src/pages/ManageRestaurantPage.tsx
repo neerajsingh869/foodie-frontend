@@ -9,7 +9,7 @@ const ManageRestaurantPage = () => {
   const { createRestaurant, isPending } = useCreateMyRestaurant();
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <span>ManageRestaurantPage Loading...</span>;
   }
 
   return (
