@@ -25,10 +25,14 @@ const ImageSection = () => {
       </div>
       {restaurantImageUrl && (
         <div className="sm:w-[450px]">
-        <AspectRatio ratio={16 / 9}>
-          <img src={restaurantImageUrl} alt="Image" className="rounded-md object-cover" />
-        </AspectRatio>
-      </div>
+          <AspectRatio ratio={16 / 9}>
+            <img
+              src={restaurantImageUrl}
+              alt="Image"
+              className="rounded-md object-cover"
+            />
+          </AspectRatio>
+        </div>
       )}
       <FormField
         control={control}
