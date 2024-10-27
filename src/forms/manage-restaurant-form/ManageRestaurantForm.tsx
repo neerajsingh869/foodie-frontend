@@ -33,26 +33,16 @@ const formSchema = z.object({
       required_error: "Country is required",
     })
     .min(1, "Country is required"),
-  deliveryPrice: z
-    .string({
-      required_error: "Delivery price is required",
+  deliveryPrice: z.coerce
+    .number({
+      invalid_type_error: "must be a number",
     })
-    .min(1, "Delivery price is required")
-    .pipe(
-      z.coerce.number({
-        invalid_type_error: "must be a number",
-      })
-    ),
-  estimatedDeliveryTime: z
-    .string({
-      required_error: "Estimated delivery time is required",
+    .min(1, "Delivery price is required"),
+  estimatedDeliveryTime: z.coerce
+    .number({
+      invalid_type_error: "must be a number",
     })
-    .min(1, "Estimated delivery time is required")
-    .pipe(
-      z.coerce.number({
-        invalid_type_error: "must be a number",
-      })
-    ),
+    .min(1, "Estimated Delivery Time is required"),
   cuisines: z.array(z.string()).min(1, "Please select at least one item"),
   menuItems: z.array(
     z.object({
