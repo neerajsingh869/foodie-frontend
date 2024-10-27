@@ -7,9 +7,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const ImageSection = () => {
-  const { control } = useFormContext();
+  const { control, watch } = useFormContext();
+
+  const restaurantImageUrl = watch("imageUrl");
 
   return (
     <div className="space-y-2">
@@ -20,11 +23,18 @@ const ImageSection = () => {
           search results. Adding a new image will overwrite the existing one.
         </p>
       </div>
+      {restaurantImageUrl && (
+        <div className="sm:w-[450px]">
+        <AspectRatio ratio={16 / 9}>
+          <img src={restaurantImageUrl} alt="Image" className="rounded-md object-cover" />
+        </AspectRatio>
+      </div>
+      )}
       <FormField
         control={control}
         name="imageFile"
         render={({ field }) => (
-          <FormItem className="w-[100%] md:w-80">
+          <FormItem className="w-[100%] sm:w-80">
             <FormControl>
               <Input
                 type="file"
