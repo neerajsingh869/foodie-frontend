@@ -29,7 +29,7 @@ const ImageSection = () => {
             <img
               src={restaurantImageUrl}
               alt="Image"
-              className="rounded-md object-cover"
+              className="rounded-md object-cover w-full h-full"
             />
           </AspectRatio>
         </div>
