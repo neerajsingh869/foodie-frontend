@@ -26,10 +26,14 @@ export const useGetMyRestaurant = () => {
     return response.json();
   };
 
-  const { data: restaurant, isLoading } = useQuery({
+  const { data: restaurant, isLoading, error } = useQuery({
     queryKey: ["current-restaurant"],
     queryFn: getMyRestaurantRequest,
   });
+
+  if (error) {
+    toast.error(error.message);
+  }
 
   return { restaurant, isLoading };
 };
@@ -81,7 +85,7 @@ export const useCreateMyRestaurant = () => {
 export const useUpdateMyRestaurant = () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const updateMyRestaurantRequest = async (restaurantFormData: FormData) => {
+  const updateMyRestaurantRequest = async (restaurantFormData: FormData): Promise<Restaurant> => {
     const accessToken = await getAccessTokenSilently();
 
     const response = await fetch(`${API_BASE_URL}/api/my/restaurant`, {
