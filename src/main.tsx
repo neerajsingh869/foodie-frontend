@@ -17,6 +17,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import { Toaster } from "./components/ui/sonner";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import ManageRestaurantPage from "./pages/ManageRestaurantPage";
+import SearchPage from "./pages/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ const router = createBrowserRouter([
       {
         path: "auth-callback",
         element: <AuthCallbackPage />,
+      },
+      {
+        path: "search/:city",
+        element: (
+          <Layout>
+            <SearchPage />
+          </Layout>
+        ),
       },
       {
         element: <ProtectedRoute />,
