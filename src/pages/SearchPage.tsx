@@ -7,11 +7,13 @@ import SearchBar, { SearchForm } from "@/components/SearchBar";
 import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultInfo from "@/components/SearchResultInfo";
 import CuisineFilter from "@/components/CuisineFilter";
+import SortOptionDropdown from "@/components/SortOptionDropdown";
 
 export type SearchState = {
   searchQuery: string;
   page: number;
   selectedCuisines: string[];
+  sortOption: string;
 };
 
 const SearchPage = () => {
@@ -20,11 +22,20 @@ const SearchPage = () => {
     searchQuery: "",
     page: 1,
     selectedCuisines: [],
+    sortOption: "bestMatch",
   });
 
   const [isExpanded, setIsExpended] = useState<boolean>(false);
 
   const { results, isLoading } = useSearchRestaurants(searchState, city);
+
+  const setSortOption = (sortOption: string) => {
+    setSearchState((prevState) => ({
+      ...prevState,
+      sortOption,
+      page: 1,
+    }));
+  };
 
   const setSelectedCuisines = (selectedCuisines: string[]) => {
     setSearchState((prevState) => ({
@@ -72,7 +83,9 @@ const SearchPage = () => {
           selectedCuisines={searchState.selectedCuisines}
           onChange={setSelectedCuisines}
           isExpanded={isExpanded}
-          onExpandedClick={() => setIsExpended((prevIsExpanded) => !prevIsExpanded)}
+          onExpandedClick={() =>
+            setIsExpended((prevIsExpanded) => !prevIsExpanded)
+          }
         />
       </div>
       <div id="main-content" className="flex flex-col gap-5">
@@ -82,7 +95,10 @@ const SearchPage = () => {
           onReset={resetSearch}
           placeholder="Search by Cusine or Restaurant Name"
         />
-        <SearchResultInfo city={city} total={results.pagination.total} />
+        <div className="flex flex-col md:flex-row justify-between items-center gap-3">
+          <SearchResultInfo city={city} total={results.pagination.total} />
+          <SortOptionDropdown onChange={(value) => setSortOption(value)} sortOption={searchState.sortOption} />
+        </div>
         {results.data.map((restaurant) => (
           <SearchResultCard key={restaurant._id} restaurant={restaurant} />
         ))}
