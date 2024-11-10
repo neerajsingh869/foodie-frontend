@@ -1,13 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 import SearchBar, { SearchForm } from "@/components/SearchBar";
 import appDownloadImage from "../assets/appDownload.png";
 import landingImage from "../assets/landing.png";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const handleSearchSubmit = (searchFormValues: SearchForm) => {
-    console.log(searchFormValues);
     navigate({
       pathname: `/search/${searchFormValues.searchQuery}`,
     });
