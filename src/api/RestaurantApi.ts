@@ -21,6 +21,7 @@ export const useGetRestaurant = (restaurantId?: string) => {
   const { data: restaurant, isLoading, error } = useQuery({
     queryKey: ["fetch-restaurant"],
     queryFn: getRestaurantByIdRequest,
+    enabled: !!restaurantId
   });
 
   if (error) {
