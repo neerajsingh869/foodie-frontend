@@ -18,6 +18,7 @@ import { Toaster } from "./components/ui/sonner";
 import ProtectedRoute from "./auth/ProtectedRoute";
 import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
+import DetailPage from "./pages/DetailPage";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <Layout>
             <SearchPage />
+          </Layout>
+        ),
+      },
+      {
+        path: "detail/:restaurantId",
+        element: (
+          <Layout>
+            <DetailPage />
           </Layout>
         ),
       },
