@@ -7,6 +7,7 @@ import OrderInfo from "@/components/OrderInfo";
 import RestaurantInfo from "@/components/RestaurantInfo";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { MenuItem as MenuItemType } from "@/types";
+import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
 
 export type CartItem = {
   _id: string;
@@ -78,6 +79,10 @@ const DetailPage = () => {
     });
   };
 
+  const onCheckout = (userFormData: UserFormData) => {
+    console.log("user form data: ", userFormData);
+  }
+
   if (isLoading || !restaurant) {
     return <div>Detail page loading...</div>;
   }
@@ -108,6 +113,8 @@ const DetailPage = () => {
             restaurant={restaurant}
             removeFromCart={removeFromCart}
             cartItems={cartItems}
+            disabled={cartItems?.length === 0}
+            onCheckout={onCheckout}
           />
         </div>
       </div>
