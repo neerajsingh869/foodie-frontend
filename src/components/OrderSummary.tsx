@@ -20,7 +20,7 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
 
     const totalWithDeliveryPrice = totalPrice + restaurant.deliveryPrice;
 
-    return totalWithDeliveryPrice;
+    return totalWithDeliveryPrice.toFixed(2);
   };
 
   return (
@@ -47,7 +47,7 @@ const OrderSummary = ({ restaurant, cartItems, removeFromCart }: Props) => {
                 size={17}
                 onClick={() => removeFromCart(cartItem)}
               />
-              ₹{cartItem.price * cartItem.quantity}
+              ₹{(cartItem.price * cartItem.quantity).toFixed(2)}
             </span>
           </div>
         ))}
