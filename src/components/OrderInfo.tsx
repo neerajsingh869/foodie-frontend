@@ -11,9 +11,17 @@ type Props = {
   removeFromCart: (cartItem: CartItem) => void;
   disabled: boolean;
   onCheckout: (userFormData: UserFormData) => void;
+  isCheckoutLoading: boolean;
 };
 
-const OrderInfo = ({ restaurant, cartItems, removeFromCart, disabled, onCheckout }: Props) => {
+const OrderInfo = ({
+  restaurant,
+  cartItems,
+  removeFromCart,
+  disabled,
+  onCheckout,
+  isCheckoutLoading,
+}: Props) => {
   return (
     <Card>
       <OrderSummary
@@ -21,7 +29,11 @@ const OrderInfo = ({ restaurant, cartItems, removeFromCart, disabled, onCheckout
         removeFromCart={removeFromCart}
         cartItems={cartItems}
       />
-      <CheckoutButton disabled={disabled} onCheckout={onCheckout} />
+      <CheckoutButton
+        disabled={disabled}
+        onCheckout={onCheckout}
+        isLoading={isCheckoutLoading}
+      />
     </Card>
   );
 };

@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Loader2 } from "lucide-react";
 
 import { Button } from "./ui/button";
 import { CardFooter } from "./ui/card";
-import LoadingButton from "./LoadingButton";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import UserProfileForm, {
   UserFormData,
@@ -13,9 +13,10 @@ import { useGetMyUser } from "@/api/MyUserApi";
 export type Props = {
   onCheckout: (userFormData: UserFormData) => void;
   disabled: boolean;
+  isLoading: boolean;
 };
 
-const CheckoutButton = ({ onCheckout, disabled }: Props) => {
+const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
   const {
     isAuthenticated,
     isLoading: isAuthLoading,
@@ -44,8 +45,15 @@ const CheckoutButton = ({ onCheckout, disabled }: Props) => {
     );
   }
 
-  if (isAuthLoading || !currentUser) {
-    return <LoadingButton />;
+  if (isAuthLoading || !currentUser || isLoading) {
+    return (
+      <CardFooter>
+        <Button disabled className="flex-1">
+          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          Loading
+        </Button>
+      </CardFooter>
+    );
   }
 
   return (

@@ -8,6 +8,7 @@ import RestaurantInfo from "@/components/RestaurantInfo";
 import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { MenuItem as MenuItemType } from "@/types";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
+import { useCreateCheckoutSession } from "@/api/OrderApi";
 
 export type CartItem = {
   _id: string;
@@ -19,13 +20,13 @@ export type CartItem = {
 const DetailPage = () => {
   const { restaurantId } = useParams();
   const { restaurant, isLoading } = useGetRestaurant(restaurantId);
+  const { createCheckoutSession, isPending: isCheckoutLoading } =
+    useCreateCheckoutSession();
 
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   useEffect(() => {
-    const storedCartItems =  sessionStorage.getItem(
-      `cartItems-${restaurantId}`
-    );
+    const storedCartItems = sessionStorage.getItem(`cartItems-${restaurantId}`);
 
     setCartItems(storedCartItems ? JSON.parse(storedCartItems) : []);
   }, [restaurantId]);
@@ -79,9 +80,28 @@ const DetailPage = () => {
     });
   };
 
-  const onCheckout = (userFormData: UserFormData) => {
-    console.log("user form data: ", userFormData);
-  }
+  const onCheckout = async (userFormData: UserFormData) => {
+    if (!restaurant) return;
+
+    const checkoutData = {
+      cartItems: cartItems.map((cartItem) => ({
+        menuItemId: cartItem._id,
+        name: cartItem.name,
+        quantity: cartItem.quantity.toString(),
+      })),
+      restaurantId: restaurant._id,
+      deliveryDetails: {
+        name: userFormData.name,
+        email: userFormData.email as string,
+        addressLine1: userFormData.addressLine1,
+        city: userFormData.city,
+      },
+    };
+
+    const data = await createCheckoutSession(checkoutData);
+
+    window.location.href = data.url;
+  };
 
   if (isLoading || !restaurant) {
     return <div>Detail page loading...</div>;
@@ -115,6 +135,7 @@ const DetailPage = () => {
             cartItems={cartItems}
             disabled={cartItems?.length === 0}
             onCheckout={onCheckout}
+            isCheckoutLoading={isCheckoutLoading}
           />
         </div>
       </div>
