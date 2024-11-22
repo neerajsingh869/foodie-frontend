@@ -1,5 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { LogOut, User, UtensilsCrossed } from "lucide-react";
+import { LoaderCircle, LogOut, User, UtensilsCrossed } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const MobileUserMenu = () => {
@@ -7,6 +7,12 @@ const MobileUserMenu = () => {
 
   return (
     <div className="flex flex-col gap-2 w-full text-black text-lg">
+      <div className="cursor-pointer flex-1 text-white hover:bg-black flex justify-center bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
+        <Link to="/order-status" className="flex p-2 items-center justify-center w-full">
+          <LoaderCircle className="mr-2 h-6 w-5" />
+          <span>Order Status</span>
+        </Link>
+      </div>
       <div className="cursor-pointer flex-1 text-white hover:bg-black flex justify-center bg-blue-500 focus:bg-blue-500 rounded-md hover:text-white focus:text-white">
         <Link to="/manage-restaurant" className="flex p-2 items-center justify-center w-full">
           <UtensilsCrossed className="mr-2 h-6 w-5" />

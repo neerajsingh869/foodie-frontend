@@ -1,8 +1,9 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import { LogIn } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { Button } from "./ui/button";
 import DesktopUserMenu from "./DesktopUserMenu";
-import { LogIn } from "lucide-react";
 
 const DesktopNav = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
@@ -10,7 +11,12 @@ const DesktopNav = () => {
   return (
     <>
       {isAuthenticated ? (
-        <DesktopUserMenu />
+        <>
+          <Link to="/order-status" className="font-bold hover:text-blue-500 mr-5">
+            Order Status
+          </Link>
+          <DesktopUserMenu />
+        </>
       ) : (
         <Button
           variant="ghost"

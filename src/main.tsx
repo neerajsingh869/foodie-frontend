@@ -19,6 +19,7 @@ import ProtectedRoute from "./auth/ProtectedRoute";
 import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
+import OrderStatusPage from "./pages/OrderStatusPage";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,14 @@ const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           {
+            path: "order-status",
+            element: (
+              <Layout>
+                <OrderStatusPage />
+              </Layout>
+            ),
+          },
+          {
             path: "user-profile",
             element: (
               <Layout>
@@ -64,11 +73,6 @@ const router = createBrowserRouter([
               </Layout>
             ),
           },
-        ],
-      },
-      {
-        element: <ProtectedRoute />,
-        children: [
           {
             path: "manage-restaurant",
             element: (

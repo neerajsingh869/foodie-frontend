@@ -27,7 +27,7 @@ export const useGetMyOrders = () => {
   };
 
   const {
-    data: myOrders,
+    data: orders,
     isLoading,
     error,
   } = useQuery({
@@ -39,7 +39,7 @@ export const useGetMyOrders = () => {
     toast.error(error.message);
   }
 
-  return { myOrders, isLoading };
+  return { orders, isLoading };
 };
 
 export const useCreateCheckoutSession = () => {
