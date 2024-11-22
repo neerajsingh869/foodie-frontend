@@ -16,6 +16,7 @@ export const useGetMyOrders = () => {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
       },
     });
 
