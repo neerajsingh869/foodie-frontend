@@ -51,7 +51,7 @@ export type CheckoutSessionRequest = {
   restaurantId: string;
 };
 
-type OrderStatus =
+export type OrderStatus =
   | "placed"
   | "delivered"
   | "outForDelivery"
