@@ -1,5 +1,6 @@
 import { Order } from "@/types";
 import { Progress } from "./ui/progress";
+import { ORDER_STATUS } from "@/config/order-status-config";
 
 type Props = {
   order: Order;
@@ -19,13 +20,17 @@ const OrderStatusHeader = ({order}: Props) => {
     return `${hours}:${formattedMinutes}`;
   }
 
+  const getOrderStatusInfo = () => {
+    return ORDER_STATUS.find(ord => ord.value === order.status) || ORDER_STATUS[0];
+  }
+
   return (
     <>
       <h1 className="flex flex-col md:flex-row md:justify-between text-3xl font-bold gap-5">
-        <div>Order Status: {order.status}</div>
+        <div>Order Status: {getOrderStatusInfo().label}</div>
         <div>Expected by: {getExpectedDeliveryTime()}</div>
       </h1>
-      <Progress className="animate-pulse" value={50} />
+      <Progress className="animate-pulse" value={getOrderStatusInfo().progressValue} />
     </>
   )
 }
