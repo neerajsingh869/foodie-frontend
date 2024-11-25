@@ -59,6 +59,7 @@ export type OrderStatus =
   | "paid";
 
 export type Order = {
+  _id: string;
   restaurant: Restaurant;
   user: User;
   cartItems: {
