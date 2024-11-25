@@ -34,7 +34,10 @@ const ManageRestaurantPage = () => {
         <TabsTrigger value="orders">Orders</TabsTrigger>
         <TabsTrigger value="manage-restaurant">Manage Retaurant</TabsTrigger>
       </TabsList>
-      <TabsContent value="orders" className="space-y-5 bg-gray-50 rounded-lg p-4 md:p-7 lg:p-10">
+      <TabsContent
+        value="orders"
+        className="space-y-5 bg-gray-50 rounded-lg p-4 md:p-7 lg:p-10"
+      >
         <h2 className="font-bold text-2xl">
           {orders?.length || 0} active orders
         </h2>

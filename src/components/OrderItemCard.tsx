@@ -1,18 +1,15 @@
 import { Order } from "@/types";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Label } from "./ui/label";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Badge } from "./ui/badge";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 import { ORDER_STATUS } from "@/config/order-status-config";
 
 type Props = {
@@ -76,7 +73,7 @@ const OrderItemCard = ({ order }: Props) => {
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent position="popper">
-              {ORDER_STATUS.map(status => (
+              {ORDER_STATUS.map((status) => (
                 <SelectItem value={status.value}>{status.label}</SelectItem>
               ))}
             </SelectContent>
