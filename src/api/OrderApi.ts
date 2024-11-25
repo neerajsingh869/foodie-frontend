@@ -34,6 +34,7 @@ export const useGetMyOrders = () => {
   } = useQuery({
     queryKey: ["get-my-orders"],
     queryFn: getMyOrdersRequest,
+    refetchInterval: 5000,
   });
 
   if (error) {
