@@ -1,9 +1,59 @@
-import { Order, Restaurant } from "@/types";
+import { toast } from "sonner";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { toast } from "sonner";
+import { Order, Restaurant, UpdateOrderStatusRequest } from "@/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+export const useUpdateMyRestaurantOrderStatus = () => {
+  const { getAccessTokenSilently } = useAuth0();
+
+  const updateMyRestaurantOrderStatusRequest = async (
+    updateOrderStatusRequest: UpdateOrderStatusRequest
+  ): Promise<Order> => {
+    const accessToken = await getAccessTokenSilently();
+
+    const response = await fetch(
+      `${API_BASE_URL}/api/my/restaurant/order/${updateOrderStatusRequest.orderId}/status`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateOrderStatusRequest.status),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update order status.");
+    }
+
+    return response.json();
+  };
+
+  const {
+    mutateAsync: updateOrderStatus,
+    error,
+    isSuccess,
+    isPending,
+    reset,
+  } = useMutation({
+    mutationFn: updateMyRestaurantOrderStatusRequest,
+  });
+
+  if (isSuccess) {
+    toast.success("Order status updated.");
+    reset();
+  }
+
+  if (error) {
+    toast.error(error.message);
+    reset();
+  }
+
+  return { updateOrderStatus, isPending };
+};
 
 export const useGetMyRestaurantOrders = () => {
   const { getAccessTokenSilently } = useAuth0();
@@ -108,16 +158,19 @@ export const useCreateMyRestaurant = () => {
     isPending,
     error,
     isSuccess,
+    reset
   } = useMutation({
     mutationFn: createMyRestaurantRequest,
   });
 
   if (isSuccess) {
     toast.success("Restaurant created successfully!");
+    reset();
   }
 
   if (error) {
     toast.error(error.message);
+    reset();
   }
 
   return { createRestaurant, isPending };
@@ -151,16 +204,19 @@ export const useUpdateMyRestaurant = () => {
     error,
     isSuccess,
     isPending,
+    reset,
   } = useMutation({
     mutationFn: updateMyRestaurantRequest,
   });
 
   if (isSuccess) {
     toast.success("Restaurant updated successfully!");
+    reset();
   }
 
   if (error) {
     toast.error(error.message);
+    reset();
   }
 
   return { updateRestaurant, isPending };

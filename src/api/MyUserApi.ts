@@ -78,16 +78,19 @@ export const useCreateMyUser = () => {
     isPending,
     error,
     isSuccess,
+    reset,
   } = useMutation({
     mutationFn: createMyUserRequest,
   });
 
   if (isSuccess) {
     toast.success("User created successfully.");
+    reset();
   }
 
   if (error) {
     toast.error(error.message);
+    reset();
   }
 
   return {
@@ -130,16 +133,19 @@ export const useUpdateMyUser = () => {
     isPending,
     isSuccess,
     error,
+    reset,
   } = useMutation({
     mutationFn: updateMyUserRequest,
   });
 
   if (isSuccess) {
     toast.success("Profile updated successfully!");
+    reset();
   }
 
   if (error) {
     toast.error(error.message);
+    reset();
   }
 
   return { updateUser, isPending };
