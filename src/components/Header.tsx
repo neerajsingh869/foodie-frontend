@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
+import { ModeToggle } from "./mode-toggle";
 
 const Header = () => {
   return (
@@ -10,9 +12,15 @@ const Header = () => {
           Foodie.com
         </Link>
         <div className="flex justify-between items-center md:hidden">
+          <span className="mr-4">
+            <ModeToggle />
+          </span>
           <MobileNav />
         </div>
         <div className="md:flex md:justify-between md:items-center hidden">
+          <span className="mr-4">
+            <ModeToggle />
+          </span>
           <DesktopNav />
         </div>
       </div>

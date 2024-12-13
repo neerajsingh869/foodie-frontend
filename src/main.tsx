@@ -20,6 +20,7 @@ import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
+import { ThemeProvider } from "./components/theme-provider";
 
 const router = createBrowserRouter([
   {
@@ -102,14 +103,16 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <Toaster
-        theme="light"
-        visibleToasts={1}
-        position="top-right"
-        richColors
-      />
-      <ReactQueryDevtools />
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <RouterProvider router={router} />
+        <Toaster
+          theme="light"
+          visibleToasts={1}
+          position="top-right"
+          richColors
+        />
+        <ReactQueryDevtools />
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>
 );
