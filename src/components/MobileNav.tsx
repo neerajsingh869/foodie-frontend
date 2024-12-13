@@ -4,6 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
+  SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "./ui/sheet";
@@ -21,13 +23,16 @@ const MobileNav = () => {
       </SheetTrigger>
 
       <SheetContent className="w-72">
-        <SheetTitle>
-          {isAuthenticated ? (
-            <span>Hi {user?.nickname}!</span>
-          ) : (
-            <span>Welcome to Foodie.com!</span>
-          )}
-        </SheetTitle>
+        <SheetHeader>
+          <SheetTitle>
+            {isAuthenticated ? (
+              <span>Hi {user?.nickname}!</span>
+            ) : (
+              <span>Welcome to Foodie.com!</span>
+            )}
+          </SheetTitle>
+          <SheetDescription className="hidden"></SheetDescription>
+        </SheetHeader>
         <Separator className="my-4" />
         <div className="flex" id="radix-:r5:">
           {isAuthenticated ? (
