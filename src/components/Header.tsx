@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import MobileNav from "./MobileNav";
 import DesktopNav from "./DesktopNav";
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "./ModeToggler";
 
 const Header = () => {
   return (
