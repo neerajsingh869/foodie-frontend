@@ -40,7 +40,10 @@ const OrderItemCard = ({ order }: Props) => {
 
   const handleOrderStatusChange = async (newStatus: OrderStatus) => {
     setCurrentStatus(newStatus);
-    await updateOrderStatus({ orderId: order._id as string, status: newStatus });
+    await updateOrderStatus({
+      orderId: order._id as string,
+      status: newStatus,
+    });
   };
 
   return (
