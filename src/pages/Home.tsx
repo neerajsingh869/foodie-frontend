@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-12">
-      <div className="bg-white text-center rounded-lg shadow-md flex flex-col gap-5 py-8 -mt-16 md:mx-32 md:px-16">
+      <div className="bg-white text-center rounded-xl shadow-md flex flex-col gap-5 py-8 -mt-16 md:mx-32 md:px-16 dark:bg-gray-900">
         <h1 className="text-4xl font-bold text-blue-500">
           Dive into a takeaway meal today
         </h1>
