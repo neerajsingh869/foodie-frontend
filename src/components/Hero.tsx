@@ -2,13 +2,7 @@ import heroImg from "../assets/hero.jpg";
 
 const Hero = () => {
   return (
-    <div
-      className="w-full flex justify-center items-center sm:py-[120px] py-20"
-      style={{
-        background:
-          "linear-gradient(166deg, rgba(59,130,246,1) 50%, rgba(245, 245, 245, 1) 50%)",
-      }}
-    >
+    <div className="w-full flex justify-center items-center sm:py-[120px] py-20 bg-gradient-to-br from-blue-500 to-gray-100 dark:from-blue-700 dark:to-gray-900">
       <img
         src={heroImg}
         alt="Hero Image"
