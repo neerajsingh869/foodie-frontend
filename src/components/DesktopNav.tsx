@@ -12,7 +12,7 @@ const DesktopNav = () => {
     <>
       {isAuthenticated ? (
         <>
-          <Link to="/order-status" className="font-bold hover:text-blue-500 mr-5">
+          <Link to="/order-status" className="font-bold hover:text-black dark:hover:text-white mr-5">
             Order Status
           </Link>
           <DesktopUserMenu />
@@ -20,7 +20,7 @@ const DesktopNav = () => {
       ) : (
         <Button
           variant="ghost"
-          className="hover:bg-white hover:text-blue-500 text-md font-bold"
+          className="text-md font-bold"
           onClick={() => loginWithRedirect()}
         >
           <LogIn className="mr-2 h-6 w-5" />

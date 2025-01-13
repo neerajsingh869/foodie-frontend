@@ -19,7 +19,7 @@ const MobileNav = () => {
   return (
     <Sheet>
       <SheetTrigger>
-        <Menu className="text-blue-500" />
+        <Menu />
       </SheetTrigger>
 
       <SheetContent className="w-72">
