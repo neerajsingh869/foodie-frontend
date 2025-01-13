@@ -42,7 +42,7 @@ const ImageSection = () => {
             <FormControl>
               <Input
                 type="file"
-                className="bg-white"
+                className="bg-background"
                 accept=".jpg, .jpeg, .png"
                 onChange={(event) =>
                   field.onChange(

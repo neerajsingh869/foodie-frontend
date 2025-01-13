@@ -14,7 +14,7 @@ const CousineCheckbox = ({ cuisine, field }: Props) => {
       <FormLabel>{cuisine}</FormLabel>
       <FormControl>
         <Checkbox
-          className="bg-white"
+          className="bg-background"
           checked={field.value.includes(cuisine)}
           onCheckedChange={(checked) => {
             if (checked) {
