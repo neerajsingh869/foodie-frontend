@@ -1,4 +1,5 @@
 import { useGetMyUser, useUpdateMyUser } from "@/api/MyUserApi";
+import UserProfileFormSkeleton from "@/components/skeletons/UserProfileFormSkeleton";
 import UserProfileForm from "@/forms/user-profile-form/UserProfileForm";
 
 const UserProfilePage = () => {
@@ -6,7 +7,7 @@ const UserProfilePage = () => {
   const { currentUser, isLoading: isGetLoading } = useGetMyUser();
 
   if (isGetLoading) {
-    return <span>UserProfilePage Loading...</span>;
+    return <UserProfileFormSkeleton />;
   }
 
   if (!currentUser) {
