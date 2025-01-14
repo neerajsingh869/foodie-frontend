@@ -56,31 +56,23 @@ const router = createBrowserRouter([
         ),
       },
       {
-        element: <ProtectedRoute />,
+        element: (
+          <Layout>
+            <ProtectedRoute />
+          </Layout>
+        ),
         children: [
           {
             path: "order-status",
-            element: (
-              <Layout>
-                <OrderStatusPage />
-              </Layout>
-            ),
+            element: <OrderStatusPage />,
           },
           {
             path: "user-profile",
-            element: (
-              <Layout>
-                <UserProfilePage />
-              </Layout>
-            ),
+            element: <UserProfilePage />,
           },
           {
             path: "manage-restaurant",
-            element: (
-              <Layout>
-                <ManageRestaurantPage />
-              </Layout>
-            ),
+            element: <ManageRestaurantPage />,
           },
         ],
       },
