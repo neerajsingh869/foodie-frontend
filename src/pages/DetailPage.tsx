@@ -9,6 +9,7 @@ import { AspectRatio } from "@radix-ui/react-aspect-ratio";
 import { MenuItem as MenuItemType } from "@/types";
 import { UserFormData } from "@/forms/user-profile-form/UserProfileForm";
 import { useCreateCheckoutSession } from "@/api/OrderApi";
+import DetailPageSkeleton from "@/components/skeletons/DetailPageSkeleton";
 
 export type CartItem = {
   _id: string;
@@ -104,7 +105,7 @@ const DetailPage = () => {
   };
 
   if (isLoading || !restaurant) {
-    return <div>Detail page loading...</div>;
+    return <DetailPageSkeleton />;
   }
 
   return (
