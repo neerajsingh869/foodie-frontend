@@ -59,11 +59,11 @@ const CheckoutButton = ({ onCheckout, disabled, isLoading }: Props) => {
   return (
     <Dialog>
       <DialogTrigger className="flex w-full">
-        <Button disabled={disabled} className="bg-blue-500 flex-1 mx-4 mb-6">
+        <Button disabled={disabled} className="bg-blue-500 dark:bg-blue-700 flex-1 mx-4 mb-6">
           Go to checkout
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-gray-50 md:min-w-[600px] max-w-[425px]">
+      <DialogContent className="bg-gray-50 dark:bg-gray-900 md:min-w-[600px] max-w-[425px]">
         <UserProfileForm
           currentUser={currentUser}
           onSave={onCheckout}

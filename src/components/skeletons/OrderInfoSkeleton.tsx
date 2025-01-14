@@ -27,7 +27,7 @@ const OrderInfoSkeleton = () => {
         <Separator />
       </CardContent>
       <div className="px-6">
-        <Button disabled className="bg-blue-500 flex-1 mb-6 w-full">
+        <Button disabled className="bg-blue-500 dark:bg-blue-700 flex-1 mb-6 w-full">
           Go to checkout
         </Button>
       </div>

@@ -38,7 +38,7 @@ const UserProfileFormSkeleton = ({
           <Skeleton className="h-9 bg-background" />
         </div>
       </div>
-      <Button type="submit" className="bg-blue-500 text-md" disabled>
+      <Button type="submit" className="bg-blue-500 dark:bg-blue-700 text-md" disabled>
         {buttonText}
       </Button>
     </form>

@@ -17,7 +17,7 @@ const ManageRestaurantFormSkeleton = () => {
       <MenuSectionSkeleton />
       <Separator />
       <ImageSectionSkeleton />
-      <Button type="submit" className="bg-blue-500 text-md" disabled>
+      <Button type="submit" className="bg-blue-500 dark:bg-blue-700 text-md" disabled>
         Submit
       </Button>
     </form>
