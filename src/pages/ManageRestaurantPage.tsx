@@ -4,6 +4,7 @@ import {
   useUpdateMyRestaurant,
 } from "@/api/MyRestaurantApi";
 import OrderItems from "@/components/OrderItems";
+import ManageRestaurantFormSkeleton from "@/components/skeletons/ManageRestaurantFormSkeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ManageRestaurantForm from "@/forms/manage-restaurant-form/ManageRestaurantForm";
 
@@ -13,10 +14,6 @@ const ManageRestaurantPage = () => {
     useCreateMyRestaurant();
   const { updateRestaurant, isPending: isUpdatePending } =
     useUpdateMyRestaurant();
-
-  if (isLoading) {
-    return <span>ManageRestaurantPage Loading...</span>;
-  }
 
   let onSave = createRestaurant;
   let isPending = isCreatePending;
@@ -39,11 +36,15 @@ const ManageRestaurantPage = () => {
         <OrderItems />
       </TabsContent>
       <TabsContent value="manage-restaurant">
-        <ManageRestaurantForm
-          restaurant={restaurant}
-          onSave={onSave}
-          isLoading={isPending}
-        />
+        {isLoading ? (
+          <ManageRestaurantFormSkeleton />
+        ) : (
+          <ManageRestaurantForm
+            restaurant={restaurant}
+            onSave={onSave}
+            isLoading={isPending}
+          />
+        )}
       </TabsContent>
     </Tabs>
   );
