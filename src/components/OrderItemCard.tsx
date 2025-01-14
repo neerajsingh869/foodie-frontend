@@ -84,7 +84,7 @@ const OrderItemCard = ({ order }: Props) => {
             </div>
           ))}
         </div>
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-4">
           <Label htmlFor="status">What is the status of this order?</Label>
           <Select
             disabled={isPending}

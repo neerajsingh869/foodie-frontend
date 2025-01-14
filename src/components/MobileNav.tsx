@@ -39,7 +39,7 @@ const MobileNav = () => {
             <MobileUserMenu />
           ) : (
             <Button
-              className="flex-1 font-bold  bg-blue-500 text-md"
+              className="flex-1 font-bold  bg-blue-500 dark:bg-blue-700 text-md"
               onClick={() => loginWithRedirect()}
             >
               <LogIn className="mr-2 h-6 w-5" />

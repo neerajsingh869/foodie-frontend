@@ -1,13 +1,20 @@
 import { useGetMyOrders } from "@/api/OrderApi";
 import OrderStatusDetail from "@/components/OrderStatusDetail";
 import OrderStatusHeader from "@/components/OrderStatusHeader";
+import OrderStatusCardSkeleton from "@/components/skeletons/OrderStatusCardSkeleton";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const OrderStatusPage = () => {
   const { orders, isLoading } = useGetMyOrders();
 
   if (isLoading) {
-    return <div>Order status page Loading...</div>;
+    return (
+      <div className="space-y-10">
+        {new Array(5).fill(0).map((_, index) => (
+          <OrderStatusCardSkeleton key={index} />
+        ))}
+      </div>
+    );
   }
 
   if (!orders || orders.length === 0) {

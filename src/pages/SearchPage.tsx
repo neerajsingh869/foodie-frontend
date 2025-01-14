@@ -8,6 +8,7 @@ import SearchResultCard from "@/components/SearchResultCard";
 import SearchResultInfo from "@/components/SearchResultInfo";
 import CuisineFilter from "@/components/CuisineFilter";
 import SortOptionDropdown from "@/components/SortOptionDropdown";
+import SearchPageSkeleton from "@/components/skeletons/SearchPageSkeleton";
 
 export type SearchState = {
   searchQuery: string;
@@ -69,7 +70,7 @@ const SearchPage = () => {
   };
 
   if (isLoading) {
-    return <div>Search page loading...</div>;
+    return <SearchPageSkeleton />;
   }
 
   if (!results?.data || !city) {
@@ -97,7 +98,10 @@ const SearchPage = () => {
         />
         <div className="flex flex-col md:flex-row justify-between items-center gap-3">
           <SearchResultInfo city={city} total={results.pagination.total} />
-          <SortOptionDropdown onChange={(value) => setSortOption(value)} sortOption={searchState.sortOption} />
+          <SortOptionDropdown
+            onChange={(value) => setSortOption(value)}
+            sortOption={searchState.sortOption}
+          />
         </div>
         {results.data.map((restaurant) => (
           <SearchResultCard key={restaurant._id} restaurant={restaurant} />

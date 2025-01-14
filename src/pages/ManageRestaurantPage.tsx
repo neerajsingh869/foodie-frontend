@@ -1,10 +1,10 @@
 import {
   useCreateMyRestaurant,
   useGetMyRestaurant,
-  useGetMyRestaurantOrders,
   useUpdateMyRestaurant,
 } from "@/api/MyRestaurantApi";
-import OrderItemCard from "@/components/OrderItemCard";
+import OrderItems from "@/components/OrderItems";
+import ManageRestaurantFormSkeleton from "@/components/skeletons/ManageRestaurantFormSkeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ManageRestaurantForm from "@/forms/manage-restaurant-form/ManageRestaurantForm";
 
@@ -14,11 +14,6 @@ const ManageRestaurantPage = () => {
     useCreateMyRestaurant();
   const { updateRestaurant, isPending: isUpdatePending } =
     useUpdateMyRestaurant();
-  const { orders } = useGetMyRestaurantOrders();
-
-  if (isLoading) {
-    return <span>ManageRestaurantPage Loading...</span>;
-  }
 
   let onSave = createRestaurant;
   let isPending = isCreatePending;
@@ -38,19 +33,18 @@ const ManageRestaurantPage = () => {
         value="orders"
         className="space-y-5 bg-gray-50 dark:bg-gray-900 rounded-lg p-4 md:p-7 lg:p-10"
       >
-        <h2 className="font-bold text-2xl">
-          {orders?.length || 0} {(orders?.length || 0) > 1 ? "orders" : "order"}
-        </h2>
-        {orders?.map((order) => (
-          <OrderItemCard order={order} />
-        ))}
+        <OrderItems />
       </TabsContent>
       <TabsContent value="manage-restaurant">
-        <ManageRestaurantForm
-          restaurant={restaurant}
-          onSave={onSave}
-          isLoading={isPending}
-        />
+        {isLoading ? (
+          <ManageRestaurantFormSkeleton />
+        ) : (
+          <ManageRestaurantForm
+            restaurant={restaurant}
+            onSave={onSave}
+            isLoading={isPending}
+          />
+        )}
       </TabsContent>
     </Tabs>
   );
