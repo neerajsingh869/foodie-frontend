@@ -37,7 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "auth-callback",
-        element: <AuthCallbackPage />,
+        element: (
+          <Layout>
+            <AuthCallbackPage />
+          </Layout>
+        ),
       },
       {
         path: "search/:city",
