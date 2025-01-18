@@ -54,7 +54,7 @@ export const useSearchRestaurants = (
   };
 
   const { data: results, isLoading, error } = useQuery({
-    queryKey: ["search-restaurants", searchState],
+    queryKey: ["search-restaurants", searchState, city],
     queryFn: createSearchRequest,
     enabled: !!city,
   });
