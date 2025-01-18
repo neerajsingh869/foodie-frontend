@@ -73,8 +73,23 @@ const SearchPage = () => {
     return <SearchPageSkeleton />;
   }
 
-  if (!results?.data || !city) {
-    return <div>No results found!</div>;
+  if (!city) {
+    return (
+      <div className="text-center mt-10">
+        <h2 className="text-xl font-bold">Please select a city</h2>
+      </div>
+    );
+  }
+
+  if (!results?.data) {
+    return (
+      <div className="text-center mt-10">
+        <h2 className="text-xl font-bold">No restaurants found in {city}</h2>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">
+          Try adjusting your search or filters
+        </p>
+      </div>
+    );
   }
 
   return (
