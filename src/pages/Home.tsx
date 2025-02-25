@@ -21,7 +21,7 @@ const Home = () => {
         </h1>
         <p className="text-lg">Delicious food is just a click away!</p>
         <SearchBar
-          placeholder="Search by City or Town"
+          placeholder="Search by City or Town e.g Varanasi"
           onSubmit={handleSearchSubmit}
         />
       </div>
